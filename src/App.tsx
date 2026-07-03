@@ -81,53 +81,53 @@ export default function App() {
   // Curated list of images with custom sizes and shadows to create an organic, tactile feel
   const trailItems = [
     {
-      src: "/Photos/me-1.png",
-      alt: "Melwin - Pose 1",
+      src: "/Photos/melwin-robinson-portrait-1.png",
+      alt: "Melwin Robinson - Developer Portrait",
       className: "w-32 md:w-44 h-auto drop-shadow-[0_10px_15px_rgba(0,0,0,0.15)]",
     },
     {
-      src: "/Photos/00b51fd0c5726521c032432c43e667b2.png",
-      alt: "Chrome Star",
+      src: "/Photos/chrome-3d-star-decoration.png",
+      alt: "Chrome 3D Star Decoration",
       className: "w-20 md:w-28 h-auto drop-shadow-[0_8px_10px_rgba(0,0,0,0.12)] rotate-12",
     },
     {
-      src: "/Photos/me-2.png",
-      alt: "Melwin - Pose 2",
+      src: "/Photos/melwin-robinson-portrait-2.png",
+      alt: "Melwin Robinson - Creative Developer",
       className: "w-36 md:w-52 h-auto drop-shadow-[0_12px_20px_rgba(0,0,0,0.18)] -rotate-6",
     },
     {
-      src: "/Photos/6dd7300dad87ca66fdcb2b747d26cdfa.png",
-      alt: "Classic iPod",
+      src: "/Photos/retro-ipod-classic.png",
+      alt: "Retro iPod Classic",
       className: "w-24 md:w-32 h-auto drop-shadow-[0_8px_12px_rgba(0,0,0,0.1)] rotate-6",
     },
     {
-      src: "/Photos/me-3.png",
-      alt: "Melwin - Pose 3",
+      src: "/Photos/melwin-robinson-portrait-3.png",
+      alt: "Melwin Robinson - Software Engineer",
       className: "w-28 md:w-40 h-auto drop-shadow-[0_10px_15px_rgba(0,0,0,0.15)] rotate-3",
     },
     {
-      src: "/Photos/f636dc70963d78d015cb72b58740b132.jpg",
-      alt: "Cassette Tape",
+      src: "/Photos/vintage-basf-cassette-tape.jpg",
+      alt: "Vintage BASF Cassette Tape",
       className: "w-28 md:w-36 h-auto rounded border border-white/10 shadow-md -rotate-12",
     },
     {
-      src: "/Photos/me-4.png",
-      alt: "Melwin - Pose 4",
+      src: "/Photos/melwin-robinson-portrait-4.png",
+      alt: "Melwin Robinson - Full Stack Developer",
       className: "w-40 md:w-56 h-auto drop-shadow-[0_15px_25px_rgba(0,0,0,0.2)] rotate-6",
     },
     {
-      src: "/Photos/image_2026-07-02_233601338-removebg-preview.png",
-      alt: "J. Cole",
+      src: "/Photos/j-cole-portrait-cutout.png",
+      alt: "J. Cole Portrait Cutout",
       className: "w-36 md:w-48 h-auto drop-shadow-[0_12px_20px_rgba(0,0,0,0.15)] -rotate-3",
     },
     {
-      src: "/Photos/me-5.png",
-      alt: "Melwin - Pose 5",
+      src: "/Photos/melwin-robinson-portrait-5.png",
+      alt: "Melwin Robinson - Web Developer",
       className: "w-32 md:w-44 h-auto drop-shadow-[0_10px_15px_rgba(0,0,0,0.15)] rotate-12",
     },
     {
-      src: "/Photos/Me-6.png",
-      alt: "Melwin - Smile",
+      src: "/Photos/melwin-robinson-portrait-6.png",
+      alt: "Melwin Robinson - Portfolio Photo",
       className: "w-36 md:w-48 h-auto drop-shadow-[0_12px_20px_rgba(0,0,0,0.18)] -rotate-12",
     },
   ]
