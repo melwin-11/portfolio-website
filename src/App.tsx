@@ -1,0 +1,185 @@
+import { useRef, useState } from "react"
+import { ImageTrail } from "@/components/ImageTrail"
+import { MacOSDock, type DockApp } from "@/components/ui/mac-os-dock"
+import { AboutWindow } from "@/components/AboutWindow"
+
+export default function App() {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const nameRef = useRef<HTMLDivElement>(null)
+  const [isHoveringName, setIsHoveringName] = useState(false)
+  const [openApps, setOpenApps] = useState<string[]>(["finder", "safari"])
+  const [isAboutOpen, setIsAboutOpen] = useState(false)
+
+  const dockApps: DockApp[] = [
+    {
+      id: "finder",
+      name: "Finder",
+      icon: "https://cdn.jim-nielsen.com/macos/1024/finder-2021-09-10.png?rf=1024",
+    },
+    {
+      id: "safari",
+      name: "Safari",
+      icon: "https://cdn.jim-nielsen.com/macos/1024/safari-2021-06-02.png?rf=1024",
+    },
+    {
+      id: "notes",
+      name: "Notes",
+      icon: "https://cdn.jim-nielsen.com/macos/1024/notes-2021-05-25.png?rf=1024",
+    },
+    {
+      id: "github",
+      name: "GitHub",
+      icon: "https://cdn.jim-nielsen.com/macos/1024/github-desktop-2021-05-20.png?rf=1024",
+    },
+    {
+      id: "linkedin",
+      name: "LinkedIn",
+      icon: "https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png",
+      className: "rounded-[22%] p-[8%]",
+    },
+    {
+      id: "leetcode",
+      name: "LeetCode",
+      icon: "https://upload.wikimedia.org/wikipedia/commons/1/19/LeetCode_logo_black.png",
+      className: "rounded-[26%] p-[12%] bg-white shadow-md scale-[0.78]",
+    },
+  ]
+
+  const handleAppClick = (appId: string) => {
+    if (appId === "notes") {
+      setIsAboutOpen((prev) => !prev)
+      setOpenApps((prev) =>
+        prev.includes("notes") ? prev.filter((id) => id !== "notes") : [...prev, "notes"]
+      )
+    } else if (appId === "github") {
+      setOpenApps((prev) =>
+        prev.includes("github") ? prev.filter((id) => id !== "github") : [...prev, "github"]
+      )
+      window.open("https://github.com/melwin-11", "_blank", "noopener,noreferrer")
+    } else if (appId === "linkedin") {
+      setOpenApps((prev) =>
+        prev.includes("linkedin") ? prev.filter((id) => id !== "linkedin") : [...prev, "linkedin"]
+      )
+      window.open("https://www.linkedin.com/in/melwin-robinson/", "_blank", "noopener,noreferrer")
+    } else if (appId === "leetcode") {
+      setOpenApps((prev) =>
+        prev.includes("leetcode") ? prev.filter((id) => id !== "leetcode") : [...prev, "leetcode"]
+      )
+      window.open("https://leetcode.com/u/melwinrobinson_11/", "_blank", "noopener,noreferrer")
+    } else {
+      setOpenApps((prev) =>
+        prev.includes(appId) ? prev.filter((id) => id !== appId) : [...prev, appId]
+      )
+    }
+  }
+
+  const handleCloseAbout = () => {
+    setIsAboutOpen(false)
+    setOpenApps((prev) => prev.filter((id) => id !== "notes"))
+  }
+
+  // Curated list of images with custom sizes and shadows to create an organic, tactile feel
+  const trailItems = [
+    {
+      src: "/Photos/me-1.png",
+      alt: "Melwin - Pose 1",
+      className: "w-32 md:w-44 h-auto drop-shadow-[0_10px_15px_rgba(0,0,0,0.15)]",
+    },
+    {
+      src: "/Photos/00b51fd0c5726521c032432c43e667b2.png",
+      alt: "Chrome Star",
+      className: "w-20 md:w-28 h-auto drop-shadow-[0_8px_10px_rgba(0,0,0,0.12)] rotate-12",
+    },
+    {
+      src: "/Photos/me-2.png",
+      alt: "Melwin - Pose 2",
+      className: "w-36 md:w-52 h-auto drop-shadow-[0_12px_20px_rgba(0,0,0,0.18)] -rotate-6",
+    },
+    {
+      src: "/Photos/6dd7300dad87ca66fdcb2b747d26cdfa.png",
+      alt: "Classic iPod",
+      className: "w-24 md:w-32 h-auto drop-shadow-[0_8px_12px_rgba(0,0,0,0.1)] rotate-6",
+    },
+    {
+      src: "/Photos/me-3.png",
+      alt: "Melwin - Pose 3",
+      className: "w-28 md:w-40 h-auto drop-shadow-[0_10px_15px_rgba(0,0,0,0.15)] rotate-3",
+    },
+    {
+      src: "/Photos/f636dc70963d78d015cb72b58740b132.jpg",
+      alt: "Cassette Tape",
+      className: "w-28 md:w-36 h-auto rounded border border-white/10 shadow-md -rotate-12",
+    },
+    {
+      src: "/Photos/me-4.png",
+      alt: "Melwin - Pose 4",
+      className: "w-40 md:w-56 h-auto drop-shadow-[0_15px_25px_rgba(0,0,0,0.2)] rotate-6",
+    },
+    {
+      src: "/Photos/image_2026-07-02_233601338-removebg-preview.png",
+      alt: "J. Cole",
+      className: "w-36 md:w-48 h-auto drop-shadow-[0_12px_20px_rgba(0,0,0,0.15)] -rotate-3",
+    },
+    {
+      src: "/Photos/me-5.png",
+      alt: "Melwin - Pose 5",
+      className: "w-32 md:w-44 h-auto drop-shadow-[0_10px_15px_rgba(0,0,0,0.15)] rotate-12",
+    },
+    {
+      src: "/Photos/Me-6.png",
+      alt: "Melwin - Smile",
+      className: "w-36 md:w-48 h-auto drop-shadow-[0_12px_20px_rgba(0,0,0,0.18)] -rotate-12",
+    },
+  ]
+
+  return (
+    <div
+      ref={containerRef}
+      className="relative w-full h-screen bg-black text-white overflow-hidden flex flex-col justify-center items-center select-none font-sans"
+    >
+      {/* Image Trail container - behind the name text (z-10) */}
+      <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden">
+        <ImageTrail
+          containerRef={containerRef}
+          targetRef={nameRef}
+          interval={120}
+          rotationRange={20}
+          disableSpawn={isHoveringName}
+        >
+          {trailItems.map((item, index) => (
+            <div key={index} className="flex relative items-center justify-center pointer-events-none">
+              <img
+                src={item.src}
+                alt={item.alt}
+                className={`${item.className} object-contain`}
+                draggable={false}
+              />
+            </div>
+          ))}
+        </ImageTrail>
+      </div>
+
+      {/* Main name in the center (z-20) */}
+      <div
+        ref={nameRef}
+        className="relative z-20 flex flex-col justify-center items-center text-center cursor-default"
+        onMouseEnter={() => setIsHoveringName(true)}
+        onMouseLeave={() => setIsHoveringName(false)}
+      >
+        <h1 className="font-display text-[22vw] sm:text-[18vw] md:text-[14vw] leading-[0.75] tracking-tighter text-white select-none uppercase">
+          MELWIN
+          <br />
+          ROBINSON
+        </h1>
+      </div>
+
+      {/* MacOS Dock floating at the bottom */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30">
+        <MacOSDock apps={dockApps} onAppClick={handleAppClick} openApps={openApps} />
+      </div>
+
+      {/* About Me Popup Window */}
+      <AboutWindow isOpen={isAboutOpen} onClose={handleCloseAbout} />
+    </div>
+  )
+}
