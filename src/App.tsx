@@ -1,4 +1,5 @@
 import { useMemo, useRef, useState } from "react"
+import { Analytics } from "@vercel/analytics/react"
 import { ImageTrail } from "@/components/ImageTrail"
 import { MacOSDock, type DockApp } from "@/components/ui/mac-os-dock"
 import { AboutWindow } from "@/components/AboutWindow"
@@ -175,58 +176,66 @@ export default function App() {
   const isHomePath = pathname === "/" || pathname === "/index.html"
 
   if (!isHomePath) {
-    return <NotFoundPage requestedPath={pathname} />
+    return (
+      <>
+        <NotFoundPage requestedPath={pathname} />
+        <Analytics />
+      </>
+    )
   }
 
   return (
-    <div
-      ref={containerRef}
-      className="relative w-full h-screen bg-black text-white overflow-hidden flex flex-col justify-center items-center select-none font-sans"
-    >
-      {/* Image Trail container - behind the name text (z-10) */}
-      <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden">
-        <ImageTrail
-          containerRef={containerRef}
-          targetRef={nameRef}
-          interval={120}
-          rotationRange={20}
-          disableSpawn={isHoveringName}
-        >
-          {randomizedTrailItems.map((item, index) => (
-            <div key={index} className="flex relative items-center justify-center pointer-events-none">
-              <img
-                src={item.src}
-                alt={item.alt}
-                className={`${item.className} object-contain`}
-                draggable={false}
-              />
-            </div>
-          ))}
-        </ImageTrail>
-      </div>
-
-      {/* Main name in the center (z-20) */}
+    <>
       <div
-        ref={nameRef}
-        className="relative z-20 flex flex-col justify-center items-center text-center cursor-default"
-        onMouseEnter={() => setIsHoveringName(true)}
-        onMouseLeave={() => setIsHoveringName(false)}
+        ref={containerRef}
+        className="relative w-full h-screen bg-black text-white overflow-hidden flex flex-col justify-center items-center select-none font-sans"
       >
-        <h1 className="font-display text-[22vw] sm:text-[18vw] md:text-[14vw] leading-[0.75] tracking-tighter text-white select-none uppercase">
-          MELWIN
-          <br />
-          ROBINSON
-        </h1>
-      </div>
+        {/* Image Trail container - behind the name text (z-10) */}
+        <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden">
+          <ImageTrail
+            containerRef={containerRef}
+            targetRef={nameRef}
+            interval={120}
+            rotationRange={20}
+            disableSpawn={isHoveringName}
+          >
+            {randomizedTrailItems.map((item, index) => (
+              <div key={index} className="flex relative items-center justify-center pointer-events-none">
+                <img
+                  src={item.src}
+                  alt={item.alt}
+                  className={`${item.className} object-contain`}
+                  draggable={false}
+                />
+              </div>
+            ))}
+          </ImageTrail>
+        </div>
 
-      {/* MacOS Dock floating at the bottom */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30">
-        <MacOSDock apps={dockApps} onAppClick={handleAppClick} openApps={openApps} />
-      </div>
+        {/* Main name in the center (z-20) */}
+        <div
+          ref={nameRef}
+          className="relative z-20 flex flex-col justify-center items-center text-center cursor-default"
+          onMouseEnter={() => setIsHoveringName(true)}
+          onMouseLeave={() => setIsHoveringName(false)}
+        >
+          <h1 className="font-display text-[22vw] sm:text-[18vw] md:text-[14vw] leading-[0.75] tracking-tighter text-white select-none uppercase">
+            MELWIN
+            <br />
+            ROBINSON
+          </h1>
+        </div>
 
-      {/* About Me Popup Window */}
-      <AboutWindow isOpen={isAboutOpen} onClose={handleCloseAbout} />
-    </div>
+        {/* MacOS Dock floating at the bottom */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30">
+          <MacOSDock apps={dockApps} onAppClick={handleAppClick} openApps={openApps} />
+        </div>
+
+        {/* About Me Popup Window */}
+        <AboutWindow isOpen={isAboutOpen} onClose={handleCloseAbout} />
+      </div>
+      <Analytics />
+    </>
   )
 }
 
