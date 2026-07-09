@@ -55,8 +55,8 @@ export const AboutWindow: React.FC<AboutWindowProps> = ({ isOpen, onClose }) => 
             {/* Window Content */}
             <div className="p-4 md:p-6 flex items-center justify-center max-h-[75vh] overflow-y-auto bg-neutral-900">
               <img
-                src="/Photos/melwin-robinson-about-me.png"
-                alt="About Melwin Robinson - Developer and Creative"
+                src="/melwin-robinson-about-me.png"
+                alt="About Melwin Robinson note introducing him as a software engineer and creative developer"
                 className="max-w-full h-auto rounded-lg shadow-lg select-none pointer-events-none"
                 draggable={false}
               />

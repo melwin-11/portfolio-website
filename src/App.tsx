@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"
+import { useMemo, useRef, useState } from "react"
 import { ImageTrail } from "@/components/ImageTrail"
 import { MacOSDock, type DockApp } from "@/components/ui/mac-os-dock"
 import { AboutWindow } from "@/components/AboutWindow"
@@ -81,56 +81,95 @@ export default function App() {
   // Curated list of images with custom sizes and shadows to create an organic, tactile feel
   const trailItems = [
     {
-      src: "/Photos/melwin-robinson-portrait-1.png",
-      alt: "Melwin Robinson - Developer Portrait",
+      src: "/melwin-robinson-portrait-1.png",
+      alt: "Portrait cutout of Melwin Robinson for his software engineering portfolio",
       className: "w-32 md:w-44 h-auto drop-shadow-[0_10px_15px_rgba(0,0,0,0.15)]",
     },
     {
-      src: "/Photos/chrome-3d-star-decoration.png",
-      alt: "Chrome 3D Star Decoration",
+      src: "/chrome-3d-star-decoration.png",
+      alt: "Chrome 3D star graphic used in Melwin Robinson's interactive portfolio",
       className: "w-20 md:w-28 h-auto drop-shadow-[0_8px_10px_rgba(0,0,0,0.12)] rotate-12",
     },
     {
-      src: "/Photos/melwin-robinson-portrait-2.png",
-      alt: "Melwin Robinson - Creative Developer",
+      src: "/melwin-robinson-portrait-2.png",
+      alt: "Creative portrait of Melwin Robinson, software engineer and web developer",
       className: "w-36 md:w-52 h-auto drop-shadow-[0_12px_20px_rgba(0,0,0,0.18)] -rotate-6",
     },
     {
-      src: "/Photos/retro-ipod-classic.png",
-      alt: "Retro iPod Classic",
+      src: "/retro-ipod-classic.png",
+      alt: "Retro iPod Classic graphic in the portfolio image trail",
       className: "w-24 md:w-32 h-auto drop-shadow-[0_8px_12px_rgba(0,0,0,0.1)] rotate-6",
     },
     {
-      src: "/Photos/melwin-robinson-portrait-3.png",
-      alt: "Melwin Robinson - Software Engineer",
+      src: "/melwin-robinson-portrait-3.png",
+      alt: "Melwin Robinson portrait representing software engineering and creative development",
       className: "w-28 md:w-40 h-auto drop-shadow-[0_10px_15px_rgba(0,0,0,0.15)] rotate-3",
     },
     {
-      src: "/Photos/vintage-basf-cassette-tape.jpg",
-      alt: "Vintage BASF Cassette Tape",
+      src: "/vintage-basf-cassette-tape.jpg",
+      alt: "Vintage BASF cassette tape graphic for a retro portfolio visual style",
       className: "w-28 md:w-36 h-auto rounded border border-white/10 shadow-md -rotate-12",
     },
     {
-      src: "/Photos/melwin-robinson-portrait-4.png",
-      alt: "Melwin Robinson - Full Stack Developer",
+      src: "/melwin-robinson-portrait-4.png",
+      alt: "Melwin Robinson full stack developer portrait cutout",
       className: "w-40 md:w-56 h-auto drop-shadow-[0_15px_25px_rgba(0,0,0,0.2)] rotate-6",
     },
     {
-      src: "/Photos/j-cole-portrait-cutout.png",
-      alt: "J. Cole Portrait Cutout",
+      src: "/j-cole-portrait-cutout.png",
+      alt: "J. Cole portrait cutout used as a music-inspired portfolio visual",
       className: "w-36 md:w-48 h-auto drop-shadow-[0_12px_20px_rgba(0,0,0,0.15)] -rotate-3",
     },
     {
-      src: "/Photos/melwin-robinson-portrait-5.png",
-      alt: "Melwin Robinson - Web Developer",
+      src: "/melwin-robinson-portrait-5.png",
+      alt: "Melwin Robinson web developer portrait in the interactive image trail",
       className: "w-32 md:w-44 h-auto drop-shadow-[0_10px_15px_rgba(0,0,0,0.15)] rotate-12",
     },
     {
-      src: "/Photos/melwin-robinson-portrait-6.png",
-      alt: "Melwin Robinson - Portfolio Photo",
+      src: "/melwin-robinson-portrait-6.png",
+      alt: "Melwin Robinson portfolio portrait for social and personal branding",
       className: "w-36 md:w-48 h-auto drop-shadow-[0_12px_20px_rgba(0,0,0,0.18)] -rotate-12",
     },
+    {
+      src: "/pixel-art-globe-internet-icon.png",
+      alt: "Pixel art globe internet icon representing web development",
+      className: "w-20 md:w-28 h-auto drop-shadow-[0_8px_12px_rgba(0,0,0,0.14)] rotate-6",
+    },
+    {
+      src: "/meme-cat-la-cap-glasses-cutout.png",
+      alt: "Meme cat wearing an LA cap and glasses as a playful portfolio sticker",
+      className: "w-28 md:w-40 h-auto drop-shadow-[0_10px_15px_rgba(0,0,0,0.18)] -rotate-6",
+    },
+    {
+      src: "/cute-spiderman-cartoon-sticker.png",
+      alt: "Cute Spider-Man cartoon sticker used as the site favicon and image trail graphic",
+      className: "w-28 md:w-40 h-auto drop-shadow-[0_10px_15px_rgba(0,0,0,0.18)] rotate-12",
+    },
+    {
+      src: "/retro-flip-phone-text-message.png",
+      alt: "Retro flip phone with a text message for a nostalgic web aesthetic",
+      className: "w-24 md:w-36 h-auto drop-shadow-[0_12px_20px_rgba(0,0,0,0.2)] -rotate-12",
+    },
+    {
+      src: "/retro-notepad-destiny-quote.png",
+      alt: "Retro notepad window with the quote destiny can be changed only in the present",
+      className: "w-28 md:w-40 h-auto rounded border border-white/10 shadow-md rotate-3",
+    },
+    {
+      src: "/pixel-retro-computer-monitor-icon.png",
+      alt: "Pixel art retro computer monitor icon representing computing and development",
+      className: "w-20 md:w-28 h-auto drop-shadow-[0_8px_12px_rgba(0,0,0,0.14)] -rotate-3",
+    },
   ]
+
+  const randomizedTrailItems = useMemo(
+    () =>
+      Array.from(
+        { length: trailItems.length * 8 },
+        () => trailItems[Math.floor(Math.random() * trailItems.length)]
+      ),
+    []
+  )
 
   return (
     <div
@@ -146,7 +185,7 @@ export default function App() {
           rotationRange={20}
           disableSpawn={isHoveringName}
         >
-          {trailItems.map((item, index) => (
+          {randomizedTrailItems.map((item, index) => (
             <div key={index} className="flex relative items-center justify-center pointer-events-none">
               <img
                 src={item.src}
