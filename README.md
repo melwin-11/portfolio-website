@@ -42,7 +42,7 @@ npm run dev
 Open `http://localhost:5173` in your browser to view the site.
 
 ### 4. Making Changes
-- **Photos**: Add your images to the `public/Photos/` folder.
+- **Photos**: Add your images directly to the `public/` folder with descriptive filenames.
 - **Image Trail**: Edit `src/App.tsx` and modify the `trailItems` array to change the images, their rotation, and shadows.
 - **Dock Icons**: Edit the `dockApps` array in `src/App.tsx` to add/remove apps or change their click behaviors.
 - **About Me**: Edit `src/components/AboutWindow.tsx` to modify the content of the popup window.
