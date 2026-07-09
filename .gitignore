@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 .docker-config
+.lock-refresh
+.npm-cache
+.ci-check
 
 # Editor directories and files
 .vscode/*
