@@ -171,6 +171,13 @@ export default function App() {
     []
   )
 
+  const pathname = window.location.pathname
+  const isHomePath = pathname === "/" || pathname === "/index.html"
+
+  if (!isHomePath) {
+    return <NotFoundPage requestedPath={pathname} />
+  }
+
   return (
     <div
       ref={containerRef}
@@ -220,5 +227,43 @@ export default function App() {
       {/* About Me Popup Window */}
       <AboutWindow isOpen={isAboutOpen} onClose={handleCloseAbout} />
     </div>
+  )
+}
+
+interface NotFoundPageProps {
+  requestedPath: string
+}
+
+function NotFoundPage({ requestedPath }: NotFoundPageProps) {
+  return (
+    <main className="relative min-h-screen overflow-hidden bg-black text-white select-none font-sans">
+      <div className="absolute inset-0 opacity-20 [background-image:linear-gradient(rgba(255,255,255,0.18)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.18)_1px,transparent_1px)] [background-size:72px_72px]" />
+      <img
+        src="/cute-spiderman-cartoon-sticker.png"
+        alt="Cute Spider-Man sticker marking a missing portfolio page"
+        className="absolute right-6 top-8 w-24 rotate-12 drop-shadow-[0_16px_24px_rgba(255,44,55,0.28)] sm:right-12 sm:top-12 sm:w-36 md:w-44"
+        draggable={false}
+      />
+
+      <section className="relative z-10 flex min-h-screen flex-col justify-center px-6 py-16 sm:px-10 md:px-16">
+        <p className="mb-4 text-sm font-semibold uppercase tracking-[0.24em] text-white/55">
+          {requestedPath}
+        </p>
+        <h1 className="font-display text-[22vw] uppercase leading-[0.78] tracking-normal text-white sm:text-[16vw] md:text-[12vw]">
+          Page
+          <br />
+          Not Found
+        </h1>
+        <p className="mt-6 max-w-xl text-base leading-7 text-white/68 sm:text-lg">
+          This part of Melwin Robinson's portfolio does not exist. Head back to the main page.
+        </p>
+        <a
+          href="/"
+          className="mt-8 inline-flex w-fit items-center rounded-full border border-white/20 bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-white/90 focus:outline-none focus:ring-2 focus:ring-white/70"
+        >
+          Back to home
+        </a>
+      </section>
+    </main>
   )
 }
