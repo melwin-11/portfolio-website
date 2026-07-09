@@ -15,6 +15,7 @@ dist-ssr
 .lock-refresh
 .npm-cache
 .ci-check
+.ci-lock-verify
 
 # Editor directories and files
 .vscode/*
